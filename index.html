@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Management Project-1</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+        <div>
+            <label>Product Id*</label><label class="validation-error hide" id="productIdValidationError">This field is
+                required.</label>
+            <input type="text" name="productId" id="productId" />
+        </div>
+        <div>
+            <label>Product Name</label>
+            <input type="text" name="productName" id="productName" />
+        </div>
+        <div>
+            <label>Product Price</label>
+            <input type="text" name="productPrice" id="productPrice" />
+        </div>
+        <div>
+            <label>Date</label>
+            <input type="date" name="date" id="date" />
+        </div>
+        <div class="form-action-buttons">
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+
+    <table class="list" id="productList">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
