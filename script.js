@@ -125,6 +125,7 @@ function readFormData() {
     return formData;
 }
 function onDelete(td) {
+    //Asking confirmation before deleting: "OK" or "Cancel"
     if (confirm('Are you sure to delete this record ?')) {
         row = td.parentElement.parentElement;
         document.getElementById("productList").deleteRow(row.rowIndex);
@@ -144,6 +145,6 @@ function insertNewRecord(data) {
     cell3.innerHTML = data.productPrice;
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.date;
-    cell4 = newRow.insertCell(4);
-    cell4.innerHTML = `<a id="deleteButton" style="padding: 5px 10px; color:white; background-color: rgb(255, 0, 0);text-decoration: none; border-radius: 5px;" onClick="onDelete(this)">Delete</a>`;
+    cell5 = newRow.insertCell(4);
+    cell5.innerHTML = `<a id="deleteButton" style="padding: 5px 10px; color:white; background-color: rgb(255, 0, 0);text-decoration: none; border-radius: 5px;" onClick="onDelete(this)">Delete</a>`;
 }
