@@ -12,18 +12,22 @@
             <label>Product Id*</label><label class="validation-error hide" id="productIdValidationError">This field is
                 required.</label>
             <input type="text" name="productId" id="productId" />
+            <span id="error__productId"></span>
         </div>
         <div>
             <label>Product Name</label>
             <input type="text" name="productName" id="productName" />
+            <span id="error__productName"></span>
         </div>
         <div>
             <label>Product Price</label>
             <input type="text" name="productPrice" id="productPrice" />
+            <span id="error__productPrice"></span>
         </div>
         <div>
             <label>Date</label>
             <input type="date" name="date" id="date" />
+            <span id="error__productDate"></span>
         </div>
         <div class="form-action-buttons">
             <input type="submit" value="Submit" />
@@ -33,7 +37,7 @@
     <table class="list" id="productList">
         <thead>
             <tr>
-                <th>Product ID</th>
+                <th id="p_id">Product ID</th>
                 <th>Product Name</th>
                 <th>Product Price</th>
                 <th>Date</th>

@@ -58,3 +58,9 @@ label.validation-error{
 .hide{
     display:none;
 }
+#error__productId,#error__productName,#error__productPrice,#error__productDate {
+    display: block;
+    color: red;
+    margin: 5px 0 0 0;
+  }
+  
