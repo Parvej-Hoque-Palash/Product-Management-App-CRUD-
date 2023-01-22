@@ -124,7 +124,13 @@ function readFormData() {
     formData["date"] = document.getElementById("date").value;
     return formData;
 }
-
+function onDelete(td) {
+    if (confirm('Are you sure to delete this record ?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById("productList").deleteRow(row.rowIndex);
+        resetForm();
+    }
+}
 function insertNewRecord(data) {
     var table = document
         .getElementById("productList")
@@ -138,4 +144,6 @@ function insertNewRecord(data) {
     cell3.innerHTML = data.productPrice;
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.date;
+    cell4 = newRow.insertCell(4);
+    cell4.innerHTML = `<a id="deleteButton" style="padding: 5px 10px; color:white; background-color: rgb(255, 0, 0);text-decoration: none; border-radius: 5px;" onClick="onDelete(this)">Delete</a>`;
 }
