@@ -2,12 +2,15 @@
 <html>
 
 <head>
-    <title>Product Management Project-1</title>
+    <title>Product Management App</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+    <form id="form__Id" onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+        <div class="form__head">
+            <h2>Product Management Form</h2>
+        </div>
         <div>
             <label>Product Id*</label><label class="validation-error hide" id="productIdValidationError">This field is
                 required.</label>
@@ -36,6 +39,7 @@
 
     <table class="list" id="productList">
         <thead>
+            <h2 class="table__head">Product List</h2>
             <tr>
                 <th id="p_id">Product ID</th>
                 <th>Product Name</th>
