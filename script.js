@@ -1,6 +1,6 @@
-var selectedRow = null;
+let selectedRow = null;
 function onFormSubmit() {
-  var formData = readFormData();
+  let formData = readFormData();
   if (!validate(formData)) {
     if (selectedRow === null) {
         if(!uniqueId(formData)) insertNewRecord(formData);
@@ -19,9 +19,9 @@ function resetForm() {
   selectedRow = null;
 }
 
-var list1 = [];
-var n = 1;
-var x = 0;
+let list1 = [];
+let n = 1;
+let x = 0;
 function showGreyBorder(styleId) {
     styleId.style.border = "1px solid";
     styleId.style.borderColor = "grey";
@@ -30,15 +30,25 @@ function showRedBorder(styleId) {
   styleId.style.border = "2px solid";
   styleId.style.borderColor = "red";
 }
+function clearAll(){
+    document.getElementById("error__productId").textContent = "";
+    document.getElementById("error__productName").textContent = "";
+    document.getElementById("error__productPrice").textContent = "";
+    document.getElementById("error__productDate").textContent = "";
+    showGreyBorder(productId);
+    showGreyBorder(productName);
+    showGreyBorder(productPrice);
+    showGreyBorder(date);
+}
 function uniqueId(Datas) {
   if (Datas["productId"] === "") {
     showRedBorder(productId);
-    var error11 = document.getElementById("error__productId");
+    let error11 = document.getElementById("error__productId");
     error11.textContent = "Empty Field!";
     return true;
   }
   else{
-    var error11 = document.getElementById("error__productId");
+    let error11 = document.getElementById("error__productId");
     error11.textContent = "";
     showGreyBorder(productId);
   }
@@ -50,12 +60,12 @@ function uniqueId(Datas) {
   if (isUnique === 1) {
     //alert("Id is not unique!");
     showRedBorder(productId);
-    var error1 = document.getElementById("error__productId");
+    let error1 = document.getElementById("error__productId");
     error1.textContent = "Id is not unique! Please insert a unique ID.";
     return true;
   } 
   else {
-    var error1 = document.getElementById("error__productId");
+    let error1 = document.getElementById("error__productId");
     error1.textContent = "";
     showGreyBorder(productId);
     list1[x++] = Datas["productId"];
@@ -65,34 +75,34 @@ function validate(Datas) {
   //Show the error message as an alert
   if (Datas["productName"] === "") {
     showRedBorder(productName);
-    var error12 = document.getElementById("error__productName");
+    let error12 = document.getElementById("error__productName");
     error12.textContent = "Empty Field!";
     return true;
   }
   else{
-    var error12 = document.getElementById("error__productName");
+    let error12 = document.getElementById("error__productName");
     error12.textContent = "";
     showGreyBorder(productName);
   }
   if (Datas["productPrice"] === "") {
     showRedBorder(productPrice);
-    var error13 = document.getElementById("error__productPrice");
+    let error13 = document.getElementById("error__productPrice");
     error13.textContent = "Empty Field!";
     return true;
   }
   else{
-    var error13 = document.getElementById("error__productPrice");
+    let error13 = document.getElementById("error__productPrice");
     error13.textContent = "";
     showGreyBorder(productPrice);
   }
   if (Datas["date"] === "") {
     showRedBorder(date);
-    var error14 = document.getElementById("error__productDate");
+    let error14 = document.getElementById("error__productDate");
     error14.textContent = "Empty Field!";
     return true;
   }
   else{
-    var error14 = document.getElementById("error__productDate");
+    let error14 = document.getElementById("error__productDate");
     error14.textContent = "";
     showGreyBorder(date);
   }
@@ -100,12 +110,12 @@ function validate(Datas) {
   if (Datas["productName"].length > 60) {
     //alert("Product name must be less than 60 characters!");
     showRedBorder(productName);
-    var error2 = document.getElementById("error__productName");
+    let error2 = document.getElementById("error__productName");
     error2.textContent = "Product name must be less than 60 characters!";
     return true;
   }
   else{
-    var error2 = document.getElementById("error__productName");
+    let error2 = document.getElementById("error__productName");
     error2.textContent = "";
     showGreyBorder(productName);
   }
@@ -113,12 +123,12 @@ function validate(Datas) {
   if (Datas["productPrice"] < 0) {
     //alert("Negative price is not allowed!");
     showRedBorder(productPrice);
-    var error3 = document.getElementById("error__productPrice");
+    let error3 = document.getElementById("error__productPrice");
     error3.textContent = "Negative price is not allowed!";
     return true;
   }
   else{
-    var error3 = document.getElementById("error__productPrice");
+    let error3 = document.getElementById("error__productPrice");
     error3.textContent = "";
     showGreyBorder(productPrice);
   }
@@ -126,35 +136,24 @@ function validate(Datas) {
   if (Datas["productPrice"] > 100000) {
     //alert("Price can not be more than 100000!");
     showRedBorder(productPrice);
-    var error4 = document.getElementById("error__productPrice");
+    let error4 = document.getElementById("error__productPrice");
     error4.textContent = "Price can not be more than 100000!";
     return true;
   }
   else{
-    var error4 = document.getElementById("error__productPrice");
+    let error4 = document.getElementById("error__productPrice");
     error4.textContent = "";
     showGreyBorder(productPrice);
   }
 }
 
 function readFormData() {
-  var formData = {};
+  let formData = {};
   document.getElementById("productId").disabled = false;
   formData["productId"] = document.getElementById("productId").value;
   //Trim the trailing spaces of the product name
-  var trimName = document.getElementById("productName").value;
-  let position;
-  for (let i = trimName.length - 1; i >= 0; i--) {
-    var character = trimName[i];
-    if (character != " ") {
-      position = i;
-      break;
-    }
-  }
-  let ProductName = "";
-  for (let i = 0; i < trimName.length; i++) {
-    ProductName += trimName[i];
-  }
+  let trimName = document.getElementById("productName").value;
+  let ProductName =trimName.trim();
   formData["productName"] = ProductName;
   formData["productPrice"] = document.getElementById("productPrice").value;
   formData["date"] = document.getElementById("date").value;
@@ -184,18 +183,18 @@ function updateRecord(formData) {
   selectedRow.cells[3].innerHTML = formData.date;
 }
 function change() {
-  var elem = document.getElementById("inputId");
+  let elem = document.getElementById("inputId");
   if (elem.value == "Submit") elem.value = "Update";
 }
 function changes() {
-    var elem = document.getElementById("inputId");
+    let elem = document.getElementById("inputId");
     if (elem.value == "Update") elem.value = "Submit";
 }
 function insertNewRecord(data) {
-  var table = document
+  let table = document
     .getElementById("productList")
     .getElementsByTagName("tbody")[0];
-  var newRow = table.insertRow(table.length);
+  let newRow = table.insertRow(table.length);
   cell1 = newRow.insertCell(0);
   cell1.innerHTML = data.productId;
   cell2 = newRow.insertCell(1);
@@ -206,6 +205,6 @@ function insertNewRecord(data) {
   cell4.innerHTML = data.date;
   cell5 = newRow.insertCell(4);
   cell5.innerHTML = `
-    <a id="editButton" style="padding: 5px 10px; color:white; background-color: rgb(1, 146, 156);text-decoration: none; border-radius: 5px;" onClick="onEdit(this); change()">Edit</a>
+    <a id="editButton" style="padding: 5px 10px; color:white; background-color: rgb(1, 146, 156);text-decoration: none; border-radius: 5px;" onClick="onEdit(this); change();clearAll()">Edit</a>
     <a id="deleteButton" style="padding: 5px 10px; color:white; background-color: rgb(255, 0, 0);text-decoration: none; border-radius: 5px;" onClick="onDelete(this)">Delete</a>`;
 }
